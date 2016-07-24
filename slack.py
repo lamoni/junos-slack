@@ -3,7 +3,7 @@ from jnpr.junos import Device
 import json
 
 # Config
-slackURL = "https://hooks.slack.com/services/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"
+slackURL = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzz"
 
 # Create JUNOS Device
 dev = Device('192.168.0.133', user='root', passwd='MySRX123!')
