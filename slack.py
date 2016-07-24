@@ -3,7 +3,8 @@ from jnpr.junos import Device
 import json
 
 # Config
-slackURL = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzzzzzzzzzz"
+slack_url = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzzzzzzzzzz"
+slack_channel = "#general"
 device_ip = "xxx.xxx.xxx.xxx"
 username = 'yyyyyy'
 password = 'zzzzzz'
@@ -20,12 +21,12 @@ show_compare = dev.rpc.get_rollback_information(rollback='0', compare='1').xpath
 
 # JSON Data for request
 jsonData = {
-    'channel': '#general',
+    'channel': slack_channel,
     'text': "%s (%s) - A commit has occurred:\n%s" % (hostname, device_ip, show_compare)
 }
 
 # Slack API Webhook Call
-req = urllib2.Request(slackURL)
+req = urllib2.Request(slack_url)
 req.add_header('Content-Type', 'application/json')
 urllib2.urlopen(req, json.dumps(jsonData))
 
