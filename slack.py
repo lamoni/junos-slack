@@ -3,17 +3,17 @@ from jnpr.junos import Device
 import json
 
 # Config
-slackURL = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzz"
+slackURL = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzzzzzzzzzz"
+device_ip = "xxx.xxx.xxx.xxx"
+username = 'yyyyyy'
+password = 'zzzzzz'
 
 # Create JUNOS Device
-dev = Device('192.168.0.133', user='root', passwd='MySRX123!')
+dev = Device(device_ip, user=username, passwd=password)
 dev.open()
 
 # Get Hostname
 hostname = dev.facts['hostname']
-
-# Get Interface Information
-ip = interfaces = dev.rpc.get_interface_information(interface_name="lo0.0").xpath('//ifa-local')[0].text.strip()
 
 # Get Rollback
 show_compare = dev.rpc.get_rollback_information(rollback='0', compare='1').xpath('//configuration-output')[0].text
@@ -21,7 +21,7 @@ show_compare = dev.rpc.get_rollback_information(rollback='0', compare='1').xpath
 # JSON Data for request
 jsonData = {
     'channel': '#general',
-    'text': "%s (%s) - A commit has occurred:\n%s" % (hostname, ip, show_compare)
+    'text': "%s (%s) - A commit has occurred:\n%s" % (hostname, device_ip, show_compare)
 }
 
 # Slack API Webhook Call
