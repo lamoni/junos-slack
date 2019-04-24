@@ -5,12 +5,9 @@ import json
 # Config
 slack_url = "https://hooks.slack.com/services/xxxxxx/yyyyyy/zzzzzzzzzzzzzz"
 slack_channel = "#general"
-device_ip = "xxx.xxx.xxx.xxx"
-username = 'yyyyyy'
-password = 'zzzzzz'
 
 # Create JUNOS Device
-dev = Device(device_ip, user=username, passwd=password)
+dev = Device()
 dev.open()
 
 # Get Hostname
@@ -22,7 +19,7 @@ show_compare = dev.rpc.get_rollback_information(rollback='0', compare='1').xpath
 # JSON Data for request
 jsonData = {
     'channel': slack_channel,
-    'text': "%s (%s) - A commit has occurred:\n%s" % (hostname, device_ip, show_compare)
+    'text': "%s - A commit has occurred:\n%s" % (hostname, show_compare)
 }
 
 # Slack API Webhook Call
