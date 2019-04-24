@@ -1,6 +1,6 @@
 
 # Setup Instructions
-## 1 - Modify config variables in slack.py to match your Slack "incoming webhook" url, device's lo0 address, and device credentials
+## 1 - Modify config variables in slack.py to match your Slack "incoming webhook" url
 
 ## 2 - Copy slack.py to device's /var/db/script/op/ directory
 
