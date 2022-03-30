@@ -2,7 +2,7 @@
 # Setup Instructions
 ## 1 - Modify config variables in slack.py to match your Slack "incoming webhook" url
 
-## 2 - Copy slack.py to device's /var/db/script/op/ directory
+## 2 - Copy slack.py to device's /var/db/scripts/op/ directory
 
 ## 3 - Enable On-box Python, netconf, and configure event policy
 ```
